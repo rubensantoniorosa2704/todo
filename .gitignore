@@ -1,0 +1,89 @@
+# Ignore the output directory of the build
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Ignore ASP.NET temporary files
+*.vs/
+.vscode/
+*.swp
+
+# Ignore Rider IDE files
+.idea/
+
+# Ignore dotnet tools and local development configurations
+*.db
+*.sqlite
+*.sql
+*.log
+*.pid
+*.pid.lock
+
+# Ignore NuGet package files
+*.nupkg
+*.snupkg
+*.nuget/
+*.packages/
+.nuget/
+*.pdb
+*.dll
+
+# Ignore package and build output files
+packages/
+*.gz
+*.tar
+*.tgz
+*.zip
+
+# Ignore project lock file
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Ignore global .NET tools configuration
+.dotnet/
+*.dotnet/
+
+# Ignore MacOS Finder files
+.DS_Store
+
+# Ignore Windows thumbnail cache
+Thumbs.db
+
+# Ignore coverage files
+*.coverage
+*.coveragexml
+*.opencover.xml
+
+# Ignore Visual Studio Code settings
+.settings/
+*.code-workspace
+*.launch
+*.suo
+*.user
+*.userosscache
+*.vs/
+
+# Ignore Build Results
+**/bin/
+**/obj/
+
+# Ignore JetBrains Rider files
+.idea/
+
+# Ignore Node.js and npm-related files
+node_modules/
+
+# Ignore JetBrains IDEs
+.idea/
+
+# Ignore the app's local build outputs
+*.build
+
+# Ignore .NET global tool executables
+.dotnet/

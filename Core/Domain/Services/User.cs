@@ -1,141 +1,64 @@
-using Microsoft.AspNetCore.Mvc;
 using TodoApi.Core.Domain.Entities;
-using TodoApi.Core.Infrastructure.Repository;
+using TodoApi.Core.Application.Interfaces;
 
 namespace TodoApi.Core.Domain.Services
 {
-    public class UserService
+    public class UserService(IUserRepository repository) : IUserService
     {
-        private readonly UserRepository _repository;
+        private readonly IUserRepository _repository = repository;
 
-        public UserService()
+        public async Task<User?> GetById(int id)
         {
-            _repository = new UserRepository();
+            if (id < 0)
+                throw new ArgumentException("User cannot be null.");
+
+            var user = await _repository.GetById(id);
+            return user;
         }
 
-        public async Task<IActionResult> GetById(int Id)
+        public async Task<List<User>> List()
         {
-            if (Id <= 0)
-            {
-                return new BadRequestObjectResult("Invalid user Id.");
-            }
-
-            try
-            {
-                var user = await _repository.GetById(Id);
-                if (user == null)
-                {
-                    return new NotFoundResult();
-                }
-
-                return new OkObjectResult(user);
-            }
-            catch (Exception)
-            {
-                return new StatusCodeResult(500);
-            }
+            return await _repository.List();
         }
 
-        public async Task<IActionResult> List()
+        public async Task<User?> Create(User user)
         {
-            try
-            {
-                var users = await _repository.List();
-                return new OkObjectResult(users);
-            }
-            catch (Exception)
-            {
-                return new StatusCodeResult(500);
-            }
+            if (user == null)
+                throw new ArgumentException("User cannot be null.");
+
+            return await _repository.Create(user);
         }
 
-        public async Task<IActionResult> Create(User user)
+        public async Task<User?> Update(User user, int id)
         {
-            if (user == null || string.IsNullOrWhiteSpace(user.Email))
-            {
-                return new BadRequestObjectResult("User data is invalid.");
-            }
+            if (user == null)
+                throw new ArgumentException("User cannot be null.");
 
-            try
-            {
-                var result = await _repository.Create(user);
-                return new CreatedAtActionResult("GetById", "Users", new { Id = user.Id }, user);
-            }
-            catch (Exception)
-            {
-                return new StatusCodeResult(500);
-            }
+            var existingUser = await _repository.GetById(id);
+            if (existingUser is null)
+                return null;
+
+            return await _repository.Update(user, id);
         }
 
-        public async Task<IActionResult> Update(User user)
+        public async Task<bool> Delete(int id)
         {
-            if (user == null || user.Id <= 0 || string.IsNullOrWhiteSpace(user.Email))
-            {
-                return new BadRequestObjectResult("User data is invalid.");
-            }
+            if (id <= 0)
+                throw new ArgumentException("Invalid id value.");
 
-            try
-            {
-                var existingUser = await _repository.GetById(user.Id);
-                if (existingUser == null)
-                {
-                    return new NotFoundResult();
-                }
+            var existingUser = await _repository.GetById(id);
+            if (existingUser is null)
+                return false;
 
-                await _repository.Update(user);
-                return new OkObjectResult(user);
-            }
-            catch (Exception)
-            {
-                return new StatusCodeResult(500);
-            }
+            return await _repository.Delete(id);
         }
 
-        public async Task<IActionResult> Delete(int Id)
-        {
-            if (Id <= 0)
-            {
-                return new BadRequestObjectResult("Invalid user Id.");
-            }
-
-            try
-            {
-                var user = await _repository.GetById(Id);
-                if (user == null)
-                {
-                    return new NotFoundResult();
-                }
-
-                await _repository.Delete(Id);
-                return new NoContentResult();
-            }
-            catch (Exception)
-            {
-                return new StatusCodeResult(500);
-            }
-        }
-
-        public async Task<IActionResult> GetByEmail(string email)
+        public async Task<User?> GetByEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
-            {
-                return new BadRequestObjectResult("InvalId email address.");
-            }
+                throw new ArgumentException("Email cannot be null or empty.");
 
-            try
-            {
-                var user = await _repository.GetByEmail(email);
-                if (user == null)
-                {
-                    return new NotFoundResult();
-                }
-
-                return new OkObjectResult(user);
-            }
-            catch (Exception)
-            {
-                return new StatusCodeResult(500);
-            }
+            return await _repository.GetByEmail(email);
         }
     }
 }

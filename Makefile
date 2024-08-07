@@ -7,7 +7,12 @@ create-migration:
 execute-migrations:
 	dotnet ef database update
 
-execute_in_container:
+execute-in-podman:
 	podman-compose down
 	podman-compose build
 	podman-compose up
+
+execute-in-docker:
+	docker compose down
+	docker compose build
+	docker compose up

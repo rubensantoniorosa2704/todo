@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\146662\\workspace\\api\\TodoApi\\TodoApi.csproj": {}
+    "/home/todo/TodoApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\146662\\workspace\\api\\TodoApi\\TodoApi.csproj": {
+    "/home/todo/TodoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\146662\\workspace\\api\\TodoApi\\TodoApi.csproj",
+        "projectUniqueName": "/home/todo/TodoApi.csproj",
         "projectName": "TodoApi",
-        "projectPath": "C:\\Users\\146662\\workspace\\api\\TodoApi\\TodoApi.csproj",
-        "packagesPath": "C:\\Users\\146662\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\146662\\workspace\\api\\TodoApi\\obj\\",
+        "projectPath": "/home/todo/TodoApi.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/home/todo/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\146662\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,17 +32,16 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.4, )"
@@ -54,6 +51,12 @@
               "version": "[5.2.1, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.7, )"
             },
@@ -85,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
