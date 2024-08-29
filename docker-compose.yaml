@@ -10,8 +10,8 @@ services:
     depends_on:
       - db
     environment:
-      DBString: Server=db;User Id=sa;Password=MyPass@word;TrustServerCertificate=true;
-      ASPNETCORE_ENVIRONMENT: Development
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DBString=Server=db;Database=TodoDb;User Id=sa;Password=Str0ngP@ssw0rd!;TrustServerCertificate=True;
 
   db:
     image: mcr.microsoft.com/mssql/server:latest
@@ -19,7 +19,6 @@ services:
     ports:
       - "1433:1433"
     environment:
-      MSSQL_PID: "Developer"
-      MSSQL_USER: "sa"
-      SA_PASSWORD: "MyPass@word"
-      ACCEPT_EULA: "Y"
+      - MSSQL_PID=Developer
+      - SA_PASSWORD=Str0ngP@ssw0rd!
+      - ACCEPT_EULA=Y
